@@ -1,0 +1,47 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: api_project_template_development
+  #username: <%= ENV["POSTGRES_USER"] || "postgres" %>
+  #password: <%= ENV["POSTGRES_PASSWORD"] || "postgres" %>
+  #password:
+  #host: localhost
+  #port: 5432
+
+test:
+  <<: *default
+  database: api_project_template_test
+  #host: localhost
+  #username: <%= ENV["POSTGRES_USER"] || "postgres" %>
+  #password: <%= ENV["POSTGRES_PASSWORD"] || "postgres" %>
+
+# As with config/credentials.yml, you never want to store sensitive information,
+# like your database password, in your source code. If your source code is
+# ever seen by anyone, they now have access to your database.
+#
+# Instead, provide the password as a unix environment variable when you boot
+# the app. Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
+# for a full rundown on how to provide these environment variables in a
+# production deployment.
+#
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+#
+production:
+  <<: *default
+  database: api_project_template_production
+  username: api_project_template
+  password: <%= ENV['API_PROJECT_TEMPLATE_DATABASE_PASSWORD'] %>
